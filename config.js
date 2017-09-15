@@ -42,7 +42,16 @@ if (process.env.OPENSHIFT_MYSQL_DB_HOST != undefined) {
         // Configure your URL and mail settings here
         production: {
             url: 'http://'+process.env.OPENSHIFT_APP_DNS,
-            mail: {},
+            mail: {
+                transport: 'SMTP',
+                options: {
+                   host: process.env.MAIL_SERVER,
+                    auth: {
+                        user: process.env.ADMIN_EMAIL_USERNAME, // mailgun username
+                        pass: process.env.ADMIN_EMAIL_PASSWORD  // mailgun password
+                    }
+                }
+            },
             database: {
                 client: 'pg',
                 connection: {
@@ -70,22 +79,22 @@ if (process.env.OPENSHIFT_MYSQL_DB_HOST != undefined) {
         // ### Development **(default)**
         development: {
             // The url to use when providing links to the site, E.g. in RSS and email.
-            url: 'http://my-ghost-blog.com',
+            url: 'http://blog.spexcast.com',
 
             // Example mail config
             // Visit http://support.ghost.org/mail for instructions
             // ```
-            //  mail: {
-            //      transport: 'SMTP',
-            //      options: {
-            //          service: 'Mailgun',
-            //          auth: {
-            //              user: '', // mailgun username
-            //              pass: ''  // mailgun password
-            //          }
-            //      }
-            //  },
-            // ```
+             mail: {
+                 transport: 'SMTP',
+                 options: {
+                    host: process.env.MAIL_SERVER,
+                     auth: {
+                         user: process.env.ADMIN_EMAIL_USERNAME, // mailgun username
+                         pass: process.env.ADMIN_EMAIL_PASSWORD  // mailgun password
+                     }
+                 }
+             },
+            
 
             database: {
                 client: 'sqlite3',
