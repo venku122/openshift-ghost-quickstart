@@ -46,6 +46,7 @@ if (process.env.OPENSHIFT_MYSQL_DB_HOST != undefined) {
                 transport: 'SMTP',
                 options: {
                    host: process.env.MAIL_SERVER,
+                   port: process.env.MAIL_SERVER_PORT,
                     auth: {
                         user: process.env.ADMIN_EMAIL_USERNAME, // mailgun username
                         pass: process.env.ADMIN_EMAIL_PASSWORD  // mailgun password
